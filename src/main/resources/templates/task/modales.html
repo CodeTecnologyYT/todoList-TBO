@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div th:fragment="modal" id="modal">
+        <div class="modal" id="registrar-tarea" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-warning text-white">
+                        <h5 class="modal-title" id="exampleModalLabel" th:text="#{button.modal.title.registrar}"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="#" th:action="@{/task/{metodo}(metodo=${metodo})}" th:object="${task}" method="post">
+                        <input type="hidden" th:field="*{taskId}">
+                        <div class="modal-body">
+                            <input class="form-control" type="text" th:field="*{nombre}" placeholder="Ingrese nombre de su Tarea">
+                        </div>
+                        <div>
+                            <div class="input-group date" data-provide="datepicker">
+                                <input type="text" class="form-control" th:field="*{fechaInicio}"  style="margin: 0px 15px 10px 15px;" placeholder="Ingresar fecha de Inicio de la Tarea">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="input-group date" data-provide="datepicker">
+                                <input type="text" class="form-control" th:field="*{fechaFin}"  style="margin: 0px 15px 10px 15px;" placeholder="Ingresar fecha de Fin de la Tarea">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" th:text="#{button.modal.cancelar}"></button>
+                            <button type="submit" class="btn btn-primary" th:text="#{button.modal.salvar}"></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

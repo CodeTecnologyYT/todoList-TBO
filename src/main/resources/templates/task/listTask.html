@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div th:fragment="listTask">
+        <div th:switch="${#lists.size(listaTask)}" >
+            <div th:case="'0'">No tiene tareas Asignadas</div>
+            <div th:case="'1'">${listaTask[0].nombre}</div>
+            <div th:case="*">
+                <div th:each="task:${listaTask}" class="d-flex justify-content-around py-5 my-2" style="background: #f9f9f9;border-radius: 12px;">
+                    <div th:text="${task.nombre}" class="col-3"></div>
+                    <div th:text="${#dates.format(task.fechaInicio,'dd/MM/yyyy')}" class="col-3"></div>
+                    <div th:text="${#dates.format(task.fechaFin,'dd/MM/yyyy')}" class="col-3"></div>
+                    <div class="col-3 d-flex">
+                        <div>
+                            <!--<a class="btn btn-info mx-1 text-white taskEditmodal" th:attr="data=${task.taskId}">-->
+                            <a class="btn btn-info mx-1 text-white taskEditmodal" th:attr="data=${task.taskId}">
+                                <i class="far fa-edit"></i>
+                            </a>
+                            <a class="btn btn-danger mx-1 text-white" th:href="@{/task/delete/{id}(id=${task.taskId})}">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

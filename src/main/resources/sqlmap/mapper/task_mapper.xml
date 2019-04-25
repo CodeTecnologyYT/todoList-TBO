@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.com.anthony.todoList.repository.TaskRepository">
+
+    <insert id="insert" parameterType="Tasks">
+
+        INSERT INTO TASK
+        (
+        NOMBRE,
+        FECHA_INICIO,
+        FECHA_FIN
+        )
+        VALUES
+        (
+          #{Tasks.nombre},
+          #{Tasks.fechaInicio},
+          #{Tasks.fechaFin}
+        )
+    </insert>
+    <select id="getAll" resultType="Tasks">
+        SELECT t.task_id,t.nombre,t.fecha_inicio,t.fecha_fin
+        FROM TASK t
+    </select>
+
+    <delete id="delete" parameterType="Long">
+        DELETE FROM TASK
+        WHERE TASK_ID=#{id}
+    </delete>
+
+    <select id="getId" parameterType="Long" resultType="Tasks">
+        SELECT t.task_id,t.nombre,t.fecha_inicio,t.fecha_fin
+        FROM TASK t
+        WHERE t.TASK_ID=#{id}
+    </select>
+    <update id="update" parameterType="Tasks" >
+        UPDATE TASK
+        SET NOMBRE =#{Tasks.nombre},
+        FECHA_INICIO = #{Tasks.fechaInicio},
+        FECHA_FIN =  #{Tasks.fechaFin}
+        WHERE TASK_ID=#{Tasks.taskId}
+    </update>
+
+</mapper>
